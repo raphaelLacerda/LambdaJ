@@ -92,10 +92,25 @@ public class RunLambdaJ {
 		//ordenadas por tempo no guj
 
 		List<Palestrante> nomeDosPalestrantesQuePostaramMaisQue80 = with(palestras)
-				.retain(having(on(Palestra.class).getQuantidadeDeVotos(), greaterThanOrEqualTo(50))).extract(on(Palestra.class).getPalestrante())
-				.sort(on(Palestrante.class).getTempoDeGuj());
+				.retain(comQuantidadeDeVotosMaiorQue(50)).extract(palestrante())
+				.sort(porTempoNoGuj());
 
 		System.out.println(nomeDosPalestrantesQuePostaramMaisQue80);
+	}
+
+	private static int porTempoNoGuj() {
+
+		return on(Palestrante.class).getTempoDeGuj();
+	}
+
+	private static Palestrante palestrante() {
+
+		return on(Palestra.class).getPalestrante();
+	}
+
+	private static HasArgumentWithValue<Object, Integer> comQuantidadeDeVotosMaiorQue(int quantidade) {
+
+		return having(on(Palestra.class).getQuantidadeDeVotos(), greaterThanOrEqualTo(quantidade));
 	}
 
 	private static HasArgumentWithValue<Object, Integer> comPostsMaiorQue(int valor) {
