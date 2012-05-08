@@ -6,14 +6,16 @@ public class Palestrante {
 	private final String	name;
 	private final int		postsNoGuj;
 	private boolean			favoritado;
+	private final int		tempoDeGuj;
 
 	//outros Atributos
 
-	public Palestrante(int id, String name, int postsNoGuj) {
+	public Palestrante(int id, String name, int postsNoGuj, int tempoDeGuj) {
 
 		this.id = id;
 		this.name = name;
 		this.postsNoGuj = postsNoGuj;
+		this.tempoDeGuj = tempoDeGuj;
 	}
 
 	public String getName() {
@@ -39,6 +41,11 @@ public class Palestrante {
 	public boolean isFavoritado() {
 
 		return favoritado;
+	}
+
+	public int getTempoDeGuj() {
+
+		return tempoDeGuj;
 	}
 
 	@Override

@@ -17,7 +17,7 @@ public class RunGuava {
 
 		for (int i = 1; i < 100; i++) {
 
-			palestrantes.add(new Palestrante(i, "Aleatorio " + i, new Random().nextInt(100)));
+			palestrantes.add(new Palestrante(i, "Aleatorio " + i, new Random().nextInt(100),new Random().nextInt(100)));
 		}
 
 		Collection<Palestrante> pm50 = filter(palestrantes, new Predicate<Palestrante>() {
