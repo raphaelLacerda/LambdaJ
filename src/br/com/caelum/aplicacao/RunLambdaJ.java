@@ -16,6 +16,7 @@ import static ch.lambdaj.Lambda.sumFrom;
 import static ch.lambdaj.collection.LambdaCollections.with;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -48,6 +49,10 @@ public class RunLambdaJ {
 		System.out.println("media de posts: " + mediaDePosts);
 
 		List<Palestrante> palestrantesComPostsMaioresQue50 = select(palestrantes, comPostsMaiorQue(50));
+		
+		
+		
+		
 		forEach(palestrantesComPostsMaioresQue50).favoritar();
 		for (Palestrante palestrante : palestrantesComPostsMaioresQue50) {
 			System.out.println(palestrante);
@@ -91,11 +96,19 @@ public class RunLambdaJ {
 		//entao eu quero somente uma lista de nome desses palestrantes
 		//ordenadas por tempo no guj
 
-		List<Palestrante> nomeDosPalestrantesQuePostaramMaisQue80 = with(palestras)
-				.retain(comQuantidadeDeVotosMaiorQue(50)).extract(palestrante())
+		List<Palestrante> nomeDosPalestrantesQuePostaramMaisQue80 = with(palestras).retain(comQuantidadeDeVotosMaiorQue(50)).extract(palestrante())
 				.sort(porTempoNoGuj());
 
 		System.out.println(nomeDosPalestrantesQuePostaramMaisQue80);
+
+		List<String> nomes = with(palestrantes).retain(having(on(Palestrante.class).getPostsNoGuj(), greaterThanOrEqualTo(30)))
+				.extract(on(Palestrante.class).getName()).sort(on(String.class));
+		
+		
+		System.out.println(nomes);
+		
+				
+		
 	}
 
 	private static int porTempoNoGuj() {
@@ -117,4 +130,8 @@ public class RunLambdaJ {
 
 		return having(on(Palestrante.class).getPostsNoGuj(), greaterThanOrEqualTo(valor));
 	}
+	
+	
 }
+
+

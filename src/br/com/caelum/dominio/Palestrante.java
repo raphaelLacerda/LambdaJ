@@ -1,6 +1,6 @@
 package br.com.caelum.dominio;
 
-public class Palestrante {
+public class Palestrante implements Comparable<Palestrante> {
 
 	private final int		id;
 	private final String	name;
@@ -52,6 +52,12 @@ public class Palestrante {
 	public String toString() {
 
 		return "Palestrante [name=" + name + ", postsNoGuj=" + postsNoGuj + ", favoritado=" + favoritado + "]";
+	}
+
+	@Override
+	public int compareTo(Palestrante o) {
+
+		return this.id - o.getId();
 	}
 
 }
